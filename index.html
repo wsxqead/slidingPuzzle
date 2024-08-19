@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sliding Puzzle</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sliding Puzzle</h1>
+
+      <div class="image-selector">
+        <p>Select an image:</p>
+        <div class="image-preview">
+          <img
+            src="src/image1.png"
+            alt="Image 1"
+            onclick="selectPredefinedImage('src/image1.png')"
+          />
+          <img
+            src="src/image2.jpg"
+            alt="Image 2"
+            onclick="selectPredefinedImage('src/image2.jpg')"
+          />
+          <img
+            src="src/image3.jpg"
+            alt="Image 3"
+            onclick="selectPredefinedImage('src/image3.jpg')"
+          />
+        </div>
+      </div>
+
+      <label for="image-input" class="upload-label">
+        <span>Upload Image</span>
+        <input type="file" id="image-input" accept="image/*" />
+      </label>
+
+      <div class="difficulty-selector">
+        <button onclick="initializePuzzle(3)">Easy (3x3)</button>
+        <button onclick="initializePuzzle(4)">Normal (4x4)</button>
+        <button onclick="initializePuzzle(5)">Hard (5x5)</button>
+      </div>
+
+      <div id="puzzle-container"></div>
+      <div id="leaderboard"></div>
+    </div>
+    <script src="slidingPuzzle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,179 @@
+/* 전체적인 스타일 설정 */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f5f7fa;
+}
+
+.container {
+  text-align: center;
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #333;
+}
+
+/* 이미지 선택 및 업로드 섹션 */
+.image-selector {
+  margin-bottom: 15px;
+}
+
+.image-selector p {
+  font-size: 1rem;
+  color: #555;
+}
+
+.image-preview {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.image-preview img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-preview img:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.upload-label {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-label input {
+  display: none;
+}
+
+.upload-label:hover {
+  background-color: #2980b9;
+}
+
+/* 난이도 선택 섹션 */
+.difficulty-selector {
+  margin-bottom: 20px;
+}
+
+.difficulty-selector button {
+  padding: 10px 15px;
+  margin: 0 5px;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.difficulty-selector button:hover {
+  background-color: #2980b9;
+}
+
+/* 퍼즐 컨테이너 스타일 */
+#puzzle-container {
+  display: grid;
+  gap: 5px;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1;
+  margin: auto;
+  background-color: #ecf0f1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3498db;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.3s ease;
+  border-radius: 5px;
+  background-size: cover;
+}
+
+.tile.blank {
+  background-color: #ecf0f1;
+  cursor: default;
+}
+
+/* 리더보드 스타일 */
+#leaderboard {
+  margin-top: 20px;
+  text-align: left;
+}
+
+#leaderboard h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+#leaderboard p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* 작은 화면을 위한 스타일 */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .difficulty-selector button {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  #puzzle-container {
+    max-width: 300px;
+    aspect-ratio: 1;
+  }
+
+  .tile {
+    font-size: 1.2rem;
+  }
+
+  #leaderboard h2 {
+    font-size: 1.2rem;
+  }
+
+  #leaderboard p {
+    font-size: 0.9rem;
+  }
+
+  .image-preview img {
+    width: 60px;
+    height: 60px;
+  }
+}

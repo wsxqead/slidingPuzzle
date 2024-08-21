@@ -2,7 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./favicon-16x16.png"
+    />
+    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
     <title>스텔라이브 슬라이딩 퍼즐게임</title>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -14,6 +36,21 @@
         <p>Select an image:</p>
         <div class="image-preview">
           <img
+            src="src/image5.jpg"
+            alt="Image 5"
+            onclick="selectPredefinedImage('src/image5.jpg')"
+          />
+          <img
+            src="src/image4.jpg"
+            alt="Image 4"
+            onclick="selectPredefinedImage('src/image4.jpg')"
+          />
+          <img
+            src="src/image6.jpg"
+            alt="Image 6"
+            onclick="selectPredefinedImage('src/image6.jpg')"
+          />
+          <img
             src="src/image1.png"
             alt="Image 1"
             onclick="selectPredefinedImage('src/image1.png')"
@@ -22,21 +59,6 @@
             src="src/image2.jpg"
             alt="Image 2"
             onclick="selectPredefinedImage('src/image2.jpg')"
-          />
-          <img
-            src="src/image4.jpg"
-            alt="Image 4"
-            onclick="selectPredefinedImage('src/image4.jpg')"
-          />
-          <img
-            src="src/image5.jpg"
-            alt="Image 5"
-            onclick="selectPredefinedImage('src/image5.jpg')"
-          />
-          <img
-            src="src/image6.jpg"
-            alt="Image 6"
-            onclick="selectPredefinedImage('src/image6.jpg')"
           />
         </div>
       </div>

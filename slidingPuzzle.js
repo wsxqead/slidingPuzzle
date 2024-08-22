@@ -54,14 +54,12 @@ function renderPuzzle() {
 
   puzzleContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
   puzzleContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
-  puzzleContainer.innerHTML = "";
+  const fragment = document.createDocumentFragment(); // Fragment를 사용하여 한번에 추가
 
   const tileWidth = puzzleContainer.clientWidth / gridSize;
   const tileHeight = puzzleContainer.clientHeight / gridSize;
 
   tiles.forEach((tile, index) => {
-    console.log("Processing tile:", tile, "at index:", index); // 타일과 인덱스를 확인
-
     const tileElement = document.createElement("div");
     tileElement.classList.add("tile");
 
@@ -84,16 +82,17 @@ function renderPuzzle() {
         }px`;
         tileElement.style.backgroundRepeat = "no-repeat";
       } else {
-        // 빈 타일이 아닌 경우에만 textContent를 설정
-        if (tileElement !== null && tile !== null) {
-          tileElement.textContent = tile.toString();
-        }
+        tileElement.textContent = tile.toString();
       }
     }
 
     tileElement.addEventListener("click", () => moveTile(index));
-    puzzleContainer.appendChild(tileElement);
+    fragment.appendChild(tileElement); // Fragment에 추가
   });
+
+  // 모든 타일을 fragment에 추가한 후, 한 번에 DOM에 추가
+  puzzleContainer.innerHTML = ""; // 기존 타일 제거
+  puzzleContainer.appendChild(fragment); // Fragment를 한 번에 추가
 }
 
 function shuffle(array) {
@@ -140,10 +139,30 @@ function checkPuzzleCompletion() {
     { length: gridSize * gridSize - 1 },
     (_, i) => i + 1
   ).concat(null);
-  if (tiles.every((tile, index) => tile === correctOrder[index])) {
+
+  console.log("Current tiles:", tiles);
+  console.log("Correct order:", correctOrder);
+
+  const isCompleted = tiles.every(
+    (tile, index) => tile === correctOrder[index]
+  );
+
+  if (isCompleted) {
     console.log("Puzzle completed!");
     stopTimer();
     updateLeaderboard(Date.now() - startTime);
+
+    // 퍼즐이 완성되었을 때 이미지 교체
+    const rikoImage = document.getElementById("riko-image");
+    if (rikoImage) {
+      rikoImage.src = "src/riko_happy.jpg"; // 이미지 경로를 행복한 이미지로 변경
+      rikoImage.alt = "Riko Happy";
+
+      // 이미지를 클릭하면 게임을 초기화하는 이벤트 리스너 추가
+      rikoImage.addEventListener("click", resetGame);
+    }
+  } else {
+    console.log("Puzzle not completed yet.");
   }
 }
 
@@ -183,6 +202,21 @@ function loadPuzzleFromLink() {
       : null;
     renderPuzzle();
   }
+}
+
+function resetGame() {
+  // 게임 초기화 코드
+  const rikoImage = document.getElementById("riko-image");
+  if (rikoImage) {
+    rikoImage.src = "src/riko_sad.jpg"; // 초기 이미지로 변경
+    rikoImage.alt = "Riko Sad";
+
+    // 기존에 추가된 클릭 이벤트 리스너 제거
+    rikoImage.removeEventListener("click", resetGame);
+  }
+
+  // 초기화된 상태로 게임을 다시 시작
+  initializePuzzle(gridSize);
 }
 
 document.addEventListener("DOMContentLoaded", () => {

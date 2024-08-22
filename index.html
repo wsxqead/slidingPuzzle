@@ -30,53 +30,69 @@
   </head>
   <body>
     <div class="container">
-      <h1>스텔라이브 슬라이딩 퍼즐게임</h1>
-
-      <div class="image-selector">
-        <p>Select an image:</p>
-        <div class="image-preview">
-          <img
-            src="src/image5.jpg"
-            alt="Image 5"
-            onclick="selectPredefinedImage('src/image5.jpg')"
-          />
-          <img
-            src="src/image4.jpg"
-            alt="Image 4"
-            onclick="selectPredefinedImage('src/image4.jpg')"
-          />
-          <img
-            src="src/image6.jpg"
-            alt="Image 6"
-            onclick="selectPredefinedImage('src/image6.jpg')"
-          />
-          <img
-            src="src/image1.png"
-            alt="Image 1"
-            onclick="selectPredefinedImage('src/image1.png')"
-          />
-          <img
-            src="src/image2.jpg"
-            alt="Image 2"
-            onclick="selectPredefinedImage('src/image2.jpg')"
-          />
+      <div class="top-container">
+        <div class="title-image">
+          <img id="riko-image" src="src/riko_sad.jpg" alt="Riko Sad" />
+        </div>
+        <h1>스텔라이브 슬라이딩 퍼즐게임</h1>
+        <div class="difficulty-selector">
+          <button onclick="initializePuzzle(3)">쉬움 (3x3)</button>
+          <button onclick="initializePuzzle(4)">보통 (4x4)</button>
+          <button onclick="initializePuzzle(5)">어려움 (5x5)</button>
         </div>
       </div>
 
-      <label for="image-input" class="upload-label">
-        <span>Upload Image</span>
-        <input type="file" id="image-input" accept="image/*" />
-      </label>
+      <div class="bottom-container">
+        <div class="left-container">
+          <div class="image-selector">
+            <div class="image-preview" id="image-preview"></div>
+          </div>
 
-      <div class="difficulty-selector">
-        <button onclick="initializePuzzle(3)">쉬움 (3x3)</button>
-        <button onclick="initializePuzzle(4)">보통 (4x4)</button>
-        <button onclick="initializePuzzle(5)">어려움 (5x5)</button>
+          <label for="image-input" class="upload-label">
+            <span>Upload Image</span>
+            <input type="file" id="image-input" accept="image/*" />
+          </label>
+        </div>
+
+        <div class="right-container">
+          <div id="puzzle-container"></div>
+        </div>
       </div>
-
-      <div id="puzzle-container"></div>
       <div id="leaderboard"></div>
     </div>
+    <script>
+      const imageFiles = [
+        "src/GTYueL2agAAva0q.jpg",
+        "src/GTYuc4GagAQzWP-.jpg",
+        "src/GTYueLwagAEql1c.jpg",
+        "src/GTYueLxagAM0W_x.jpg",
+        "src/GURE7yUaMAA59dK.jpg",
+        "src/GURE8u2bcAASw2m.jpg",
+        "src/GURE8u2bIAA1GS9.jpg",
+        "src/GURE8u0bQAAkLnT.jpg",
+        "src/GU6DQsrbgAANW06.jpg",
+        "src/GU6DQsua4AEO5Pr.jpg",
+        "src/GU6DQsubkAALlx5.jpg",
+        "src/GU6DQsyaAAANvBx.jpg",
+      ];
+
+      const imagePreviewContainer = document.getElementById("image-preview");
+
+      imageFiles.forEach((imagePath) => {
+        const imgElement = document.createElement("img");
+        imgElement.src = imagePath;
+        imgElement.alt = `Image ${imagePath}`;
+        imgElement.onclick = () => selectPredefinedImage(imagePath);
+        imagePreviewContainer.appendChild(imgElement);
+      });
+
+      function selectPredefinedImage(imagePath) {
+        // 이미지 선택 시 처리할 로직
+        console.log(`Selected image: ${imagePath}`);
+        // 이미지에 맞는 슬라이딩 퍼즐 초기화 코드 실행
+        initializePuzzle(3, imagePath); // 예시로 3x3 퍼즐 초기화
+      }
+    </script>
     <script src="slidingPuzzle.js"></script>
   </body>
 </html>
